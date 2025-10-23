@@ -1,0 +1,21 @@
+import 'package:dart_application_1/dart_application_1.dart' as dart_application_1;
+import 'dart:io';
+
+void main(List<String> arguments) {
+ 
+  //while para que se ejecute infinito hasta salir
+  //elegir operacion ()switch
+    //pedir valores
+    //calculo adecuado
+    //mostrar resultado(valor 1 simbolo valor 2 = reslutado)
+  bool Salir = true;
+  while (Salir == true){
+
+    print("Calculadora");
+
+    String operacion = stdin.readLineSync();
+
+  }
+
+
+}
