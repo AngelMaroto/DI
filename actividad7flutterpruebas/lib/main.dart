@@ -17,6 +17,8 @@ class MainApp extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
               color: Colors.white,
             ),
+            margin: EdgeInsets.all(5),
+            padding: EdgeInsets.all(5),
             child: Card(
               child: Container(
                 child: Text('hola que tal estais'),
@@ -24,8 +26,6 @@ class MainApp extends StatelessWidget {
               ),
               color: Colors.amber,
             ),
-            margin: EdgeInsets.all(5),
-            padding: EdgeInsets.all(5),
           )
         ),
       ),

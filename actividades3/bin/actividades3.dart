@@ -6,7 +6,7 @@ int sumaedad(Map<String, int> mapa) {
   int suma =0;
 
     for(int edad in mapa.values)
-    {suma += edad;};
+    {suma += edad;}
     return suma;
 }
 //funcion edad minima(parametro mapa retorno int)

@@ -1,6 +1,4 @@
-import 'dart:convert';
 
-import 'package:actividad6/actividad6.dart' as actividad6;
 import 'dart:io';
 
 Future<void> main() async{

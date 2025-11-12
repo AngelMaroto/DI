@@ -21,11 +21,11 @@ class MyApp extends StatelessWidget {
             Text('Texto 1'),
             Text('Texto 2'),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(onPressed: (){}, child: Text('Boton 1')),
                 ElevatedButton(onPressed:(){}, child: Text('boton 2'))
               ],
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             )
           ],
         ),  

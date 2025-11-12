@@ -14,12 +14,6 @@ class MainApp extends StatelessWidget {
         body: ListView(
           children: [
             Container(
-              child: ListTile(
-                leading: Image.network('https://placehold.co/600x400.png'),
-                title: Text('Nombre'),
-                subtitle: Text('Precio'),
-                contentPadding: EdgeInsets.all(20),
-              ),
               decoration: BoxDecoration(
                 boxShadow: [
                   BoxShadow(
@@ -32,14 +26,14 @@ class MainApp extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
               ),
               margin: EdgeInsets.all(10),
+              child: ListTile(
+                leading: Image.network('https://placehold.co/600x400.png'),
+                title: Text('Nombre'),
+                subtitle: Text('Precio'),
+                contentPadding: EdgeInsets.all(20),
+              ),
             ),
             Container(
-              child: ListTile(
-                leading: Image.network('https://placehold.co/600x400.png'),
-                title: Text('Nombre'),
-                subtitle: Text('Precio'),
-                contentPadding: EdgeInsets.all(20),
-              ),
               decoration: BoxDecoration(
                 boxShadow: [
                   BoxShadow(
@@ -52,14 +46,14 @@ class MainApp extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
               ),
               margin: EdgeInsets.all(10),
+              child: ListTile(
+                leading: Image.network('https://placehold.co/600x400.png'),
+                title: Text('Nombre'),
+                subtitle: Text('Precio'),
+                contentPadding: EdgeInsets.all(20),
+              ),
             ),
             Container(
-              child: ListTile(
-                leading: Image.network('https://placehold.co/600x400.png'),
-                title: Text('Nombre'),
-                subtitle: Text('Precio'),
-                contentPadding: EdgeInsets.all(20),
-              ),
               decoration: BoxDecoration(
                 boxShadow: [
                   BoxShadow(
@@ -72,6 +66,12 @@ class MainApp extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
               ),
               margin: EdgeInsets.all(10),
+              child: ListTile(
+                leading: Image.network('https://placehold.co/600x400.png'),
+                title: Text('Nombre'),
+                subtitle: Text('Precio'),
+                contentPadding: EdgeInsets.all(20),
+              ),
             ),
           ],
         ),

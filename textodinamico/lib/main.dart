@@ -7,6 +7,9 @@ void main() {
 }
 
 class MainApp extends StatefulWidget {
+  const MainApp({super.key});
+
+  @override
   _MainAppDin createState() => _MainAppDin();
 }
   
@@ -18,7 +21,8 @@ class _MainAppDin extends State<MainApp>{
     });
   }
 
-     Widget build(BuildContext context) {
+     @override
+  Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         body: Center(

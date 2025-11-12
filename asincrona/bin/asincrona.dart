@@ -1,4 +1,3 @@
-import 'package:asincrona/asincrona.dart' as asincrona;
 import 'dart:async';
 
   

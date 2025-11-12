@@ -14,6 +14,8 @@ class MainApp extends StatelessWidget {
 }
 
 class PantallaA extends StatefulWidget {
+  const PantallaA({super.key});
+
   @override
   State<StatefulWidget> createState() => PantallaAState();
 }
@@ -27,7 +29,7 @@ class PantallaAState extends State<PantallaA> {
       appBar: AppBar(),
       body: Column(
         children: [
-          Text("Nombre: " + nombre),
+          Text("Nombre: $nombre"),
           ElevatedButton(
             child: Text("Ir al fomrularo"),
             onPressed: () async {
@@ -51,13 +53,15 @@ class PantallaB extends StatelessWidget {
 
   TextEditingController controller = TextEditingController();
 
+  PantallaB({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('FormularioNombre')),
       body: Column(
         children: [
-          Text("NOMBRE POR DEFECTO: " + nombre),
+          Text("NOMBRE POR DEFECTO: $nombre"),
           TextField(
             controller: controller,
             onChanged: (text) {

@@ -14,6 +14,8 @@ class MainApp extends StatelessWidget {
 }
 
 class ListaElementos extends StatefulWidget {
+  const ListaElementos({super.key});
+
   @override
   State<StatefulWidget> createState() => ListaElementosState();
 }

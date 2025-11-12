@@ -5,6 +5,8 @@ void main() {
 }
 
 class MainApp extends StatelessWidget {
+  const MainApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,6 +20,8 @@ class MainApp extends StatelessWidget {
 }
 
 class PantallaA extends StatelessWidget {
+  const PantallaA({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,6 +53,8 @@ class PantallaA extends StatelessWidget {
 }
 
 class PantallaB extends StatelessWidget {
+  const PantallaB({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,6 +65,8 @@ class PantallaB extends StatelessWidget {
 }
 
 class PantallaC extends StatelessWidget {
+  const PantallaC({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
