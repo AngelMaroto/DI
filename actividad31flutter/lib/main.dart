@@ -21,8 +21,11 @@ class _RegistroFormScreenState extends State<RegistroFormScreen> {
 
   String terminos = 'Aceptar Términos';
 
-  // Regex básico para validar email
   final RegExp emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+
+  // Estado para mostrar/ocultar contraseñas
+  bool _obscurePass = true;
+  bool _obscurePassRepeat = true;
 
   void _clearForm() {
     setState(() {
@@ -32,6 +35,8 @@ class _RegistroFormScreenState extends State<RegistroFormScreen> {
       _passRepeatController.clear();
       terminos = 'Aceptar Términos';
       _formKey.currentState?.reset();
+      _obscurePass = true;
+      _obscurePassRepeat = true;
     });
   }
 
@@ -75,15 +80,28 @@ class _RegistroFormScreenState extends State<RegistroFormScreen> {
                 decoration: InputDecoration(labelText: "Login"),
                 validator: (val) {
                   if (val == null || val.isEmpty) return "Introduce el login";
-                  if (val.trim().toLowerCase() == "admin") return "No puedes usar 'admin' como login";
+                  if (val.trim().toLowerCase() == "admin")
+                    return "No puedes usar 'admin' como login";
                   return null;
                 },
               ),
               SizedBox(height: 16),
               TextFormField(
                 controller: _passController,
-                obscureText: true,
-                decoration: InputDecoration(labelText: "Contraseña"),
+                obscureText: _obscurePass,
+                decoration: InputDecoration(
+                  labelText: "Contraseña",
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _obscurePass ? Icons.visibility : Icons.visibility_off,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _obscurePass = !_obscurePass;
+                      });
+                    },
+                  ),
+                ),
                 validator: (val) {
                   if (val == null || val.isEmpty) return "Introduce una contraseña";
                   if (val.length < 9) return "Debe tener más de 8 caracteres";
@@ -96,8 +114,20 @@ class _RegistroFormScreenState extends State<RegistroFormScreen> {
               SizedBox(height: 16),
               TextFormField(
                 controller: _passRepeatController,
-                obscureText: true,
-                decoration: InputDecoration(labelText: "Repite Contraseña"),
+                obscureText: _obscurePassRepeat,
+                decoration: InputDecoration(
+                  labelText: "Repite Contraseña",
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _obscurePassRepeat ? Icons.visibility : Icons.visibility_off,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _obscurePassRepeat = !_obscurePassRepeat;
+                      });
+                    },
+                  ),
+                ),
                 validator: (val) {
                   if (val == null || val.isEmpty) return "Vuelve a escribir la contraseña";
                   if (val != _passController.text) return "Las contraseñas no coinciden";
@@ -139,6 +169,7 @@ class _RegistroFormScreenState extends State<RegistroFormScreen> {
     );
   }
 }
+
 
 class DatosIngresadosScreen extends StatelessWidget {
   final String email;
