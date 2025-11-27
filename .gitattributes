@@ -1,5 +1,16 @@
-*.dart linguist-language=Dart
-*.cpp linguist-detectable=false
+# Excluye los archivos de encabezado (C/C++)
 *.h linguist-detectable=false
-*.CMake linguist-detectable=false
+
+# Excluye los archivos de código fuente C/C++
 *.c linguist-detectable=false
+*.cpp linguist-detectable=false
+*.cc linguist-detectable=false
+
+# Excluye los archivos de CMake
+# Es importante incluir CMakeLists.txt (sin extensión) y los archivos .cmake
+CMakeLists.txt linguist-detectable=false
+*.cmake linguist-detectable=false
+
+# Opcional: Esto ya lo detecta por defecto, pero lo puedes mantener
+# si quieres forzar la clasificación de cualquier .dart a Dart.
+*.dart linguist-language=Dart
