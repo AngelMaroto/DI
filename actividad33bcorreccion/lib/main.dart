@@ -75,119 +75,127 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     final notesProvider = context.watch<NotesProvider>();
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(onPressed: (){
-          Navigator.push(context, 
-          MaterialPageRoute(builder: (_) => SettingsScreen()
-          )
-          );
-        }, 
-        icon: Icon(Icons.settings)),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => SettingsScreen()),
+            );
+          },
+          icon: Icon(Icons.settings),
+        ),
         title: Text("Lista de notas"),
       ),
-      body: GridView.builder(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: 5
-          
-        ),
-        itemCount: notesProvider.lista.length,
-        itemBuilder: (BuildContext context, int index) {
-          final note = notesProvider.lista[index];
-          return Card( 
+      body: Center(
+        child: notesProvider.lista.length==0 ? Text("no hay nada"):
+        GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: 4.0,
+          ),
+          itemCount: notesProvider.lista.length,
+          itemBuilder: (BuildContext context, int index) {
+            final note = notesProvider.lista[index];
+            return Card(
               child: Column(
-              children: [
-                Text(note.titulo),
-                Text(note.descripcion),
-                OverflowBar(
-                  spacing: 8,
-                  overflowAlignment: OverflowBarAlignment.end,
-                ),
-                OverflowBar(
-                  spacing: 8,
-                  overflowAlignment: OverflowBarAlignment.center,
-                )
-              ],
-            ),
+                children: [
+                  Text(note.titulo),
+                  Text(note.descripcion),
+                  OverflowBar(
+                    spacing: 8,
+                    overflowAlignment: OverflowBarAlignment.end,
+                  ),
+                  OverflowBar(
+                    spacing: 8,
+                    overflowAlignment: OverflowBarAlignment.center,
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => AddNoteScreen()),
           );
         },
-      ),
-      floatingActionButton: FloatingActionButton(onPressed: (){
-        Navigator.push(context, 
-        MaterialPageRoute(builder: (_)=>AddNoteScreen()
-        ),
-        );
-      },
-      child: Icon(Icons.add),
+        child: Icon(Icons.add),
       ),
     );
   }
+}
+
+class Note {
+  String titulo;
+  String descripcion;
+
+  Note(this.titulo, this.descripcion);
+}
+
+class NotesProvider extends ChangeNotifier {
+  final _lista = <Note>[];
+  List<Note> get lista => _lista;
+  void addNote(Note nota) {
+    _lista.add(nota);
+    notifyListeners();
   }
 
-  class Note{
-    String titulo;
-    String descripcion;
-
-    Note(this.titulo, this.descripcion);
+  void removeNote(Note nota) {
+    _lista.remove(nota);
+    notifyListeners();
   }
+}
 
-  class NotesProvider extends ChangeNotifier{
+class AddNoteScreen extends StatefulWidget {
+  const AddNoteScreen({super.key});
 
-    final _lista = <Note>[];
-    List<Note> get lista => _lista;
-    void addNote(Note nota){
-      _lista.add(nota);
-      notifyListeners();
-    }
+  @override
+  State<AddNoteScreen> createState() => _AddNoteScreenState();
+}
 
-  }
-
-  class AddNoteScreen extends StatefulWidget {
-    const AddNoteScreen({super.key});
-  
-    @override
-    State<AddNoteScreen> createState() => _AddNoteScreenState();
-  }
-
-  
-  class _AddNoteScreenState extends State<AddNoteScreen> {
-    TextEditingController titleCtrl = TextEditingController();
-    TextEditingController descCtrl = TextEditingController();
-    @override
-    Widget build(BuildContext context) {
-      return Scaffold(
-        appBar: AppBar(
-          title: Text("Crear Notas"),
-        ),
-        body: Center(
-          child: Form(
-            child: Column(
-              children: 
-              [TextFormField(
+class _AddNoteScreenState extends State<AddNoteScreen> {
+  TextEditingController titleCtrl = TextEditingController();
+  TextEditingController descCtrl = TextEditingController();
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Crear Notas")),
+      body: Center(
+        child: Form(
+          child: Column(
+            children: [
+              TextFormField(
                 controller: titleCtrl,
                 decoration: InputDecoration(hintText: "Introduce un título"),
               ),
               TextFormField(
                 controller: descCtrl,
-                decoration: InputDecoration(hintText: "Introduce una descripción"),
-              ),
-              ElevatedButton(onPressed: (){
-                context.read<NotesProvider>().addNote(
-                  Note(titleCtrl.text, descCtrl.text)
-                );
-                Navigator.pop(context, 
-                MaterialPageRoute(builder: (_)=>HomeScreen()
+                decoration: InputDecoration(
+                  hintText: "Introduce una descripción",
                 ),
-                );
-              }, 
-              child: Text("Guardar"))
-              ],
-            ) 
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  context.read<NotesProvider>().addNote(
+                    Note(titleCtrl.text, descCtrl.text),
+                  );
+                  Navigator.pop(
+                    context,
+                    MaterialPageRoute(builder: (_) => HomeScreen()),
+                  );
+                },
+                child: Text("Guardar"),
+              ),
+            ],
           ),
         ),
-      );
-    }
+      ),
+    );
   }
+}
