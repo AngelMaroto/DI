@@ -100,7 +100,7 @@ class _FormularioScreenState extends State<FormularioScreen> {
           child: Text("Mostrar")
           ),
           Expanded(
-            child: child)
+            child: )
         ],
       ),
     );
