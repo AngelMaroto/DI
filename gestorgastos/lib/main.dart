@@ -205,7 +205,7 @@ class MiDrawer extends StatelessWidget {
 }
 
 // ------------------------------------------------------------------
-// 5. PANTALLA 1: INSERTAR DATO (Sin cambios)
+// 5. PANTALLA 1: INSERTAR DATO
 // ------------------------------------------------------------------
 class InsertarDato extends StatefulWidget {
   const InsertarDato({super.key});
@@ -309,9 +309,7 @@ class _InsertarDatoState extends State<InsertarDato> {
               controller: _dineroController,
               keyboardType: TextInputType.number,
               decoration: const InputDecoration(
-                prefixIcon: Icon(Icons.attach_money),
                 border: OutlineInputBorder(),
-                hintText: "Ej: 50.00",
               ),
             ),
             const SizedBox(height: 40),
