@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
-// Mantenemos el hide context para evitar errores
 import 'package:path/path.dart' hide context;
 import 'dart:io';
 

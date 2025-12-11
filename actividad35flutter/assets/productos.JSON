@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "nombre": "Auriculares Inalámbricos",
+    "precio": 59.99
+  },
+  {
+    "id": 2,
+    "nombre": "Cafetera Italiana",
+    "precio": 25.50
+  },
+  {
+    "id": 3,
+    "nombre": "Zapatillas Deportivas",
+    "precio": 89.00
+  },
+  {
+    "id": 4,
+    "nombre": "Novela de Ciencia Ficción",
+    "precio": 15.20
+  },
+  {
+    "id": 5,
+    "nombre": "Monitor 24 Pulgadas",
+    "precio": 145.00
+  }
+]
