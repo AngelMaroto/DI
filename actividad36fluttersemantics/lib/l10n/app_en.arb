@@ -1,0 +1,8 @@
+{
+    "textField" : "Name field",
+
+    "emailField" : "Email field",
+
+    "sendButton" : "Send button"
+
+}

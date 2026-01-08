@@ -1,0 +1,14 @@
+{
+    "textField" : "Campo de nombre",
+    "@textField" : {
+        "description" : "Etiqueta del campo de nombre"
+    },
+    "emailField" : "Campo de correo electrónico",
+    "@emailField" : {
+        "description" : "Etiqueta del campo de correo electrónico"
+    },
+    "sendButton" : "Botón de envíar",
+    "@sendButton" : {
+        "description" : "Etiqueta del botón de envíar"
+    }
+}
