@@ -8,12 +8,26 @@ void main() {
   runApp(const MainApp());
 }
 
-class MainApp extends StatelessWidget {
+class MainApp extends StatefulWidget {
   const MainApp({super.key});
+
+  @override
+  State<MainApp> createState() => _MainAppState();
+}
+
+class _MainAppState extends State<MainApp> {
+  Locale? _locale; 
+
+  void setLocale(Locale value) {
+    setState(() {
+      _locale = value;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      locale: _locale, 
       localizationsDelegates: [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -21,22 +35,24 @@ class MainApp extends StatelessWidget {
       ],
       supportedLocales: const [Locale('en'), Locale('es')],
 
-      home: const Formulario(),
+      home: Formulario(onLocaleChange: setLocale),
     );
   }
 }
 
 class Formulario extends StatefulWidget {
-  const Formulario({super.key});
+  final Function(Locale) onLocaleChange;
+  const Formulario({super.key, required this.onLocaleChange});
 
   @override
   State<Formulario> createState() => _FormularioState();
 }
 
 class _FormularioState extends State<Formulario> {
-  final _formKey = GlobalKey<FormState>(); // Llave necesaria para validar
+  final _formKey = GlobalKey<FormState>();
   final _nameCtrl = TextEditingController();
   final _emailCtrl = TextEditingController();
+  double _tamanoletra = 30.0;
 
   @override
   void dispose() {
@@ -46,19 +62,18 @@ class _FormularioState extends State<Formulario> {
   }
 
   void _enviar() {
-    
     if (_formKey.currentState!.validate()) {
-      
       print("Formulario válido");
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       body: Form(
-        key: _formKey, 
+        key: _formKey,
         child: Column(
           children: [
             Semantics(
@@ -66,7 +81,11 @@ class _FormularioState extends State<Formulario> {
               hint: l10n.textField,
               child: TextFormField(
                 controller: _nameCtrl,
-                decoration:  InputDecoration(labelText: l10n.textField),
+                style: TextStyle(fontSize: _tamanoletra),
+                decoration: InputDecoration(
+                  labelText: l10n.textField,
+                  labelStyle: TextStyle(fontSize: _tamanoletra),
+                ),
                 validator: (value) => (value == null || value.trim().isEmpty)
                     ? "Introduce un nombre"
                     : null,
@@ -77,7 +96,11 @@ class _FormularioState extends State<Formulario> {
               hint: l10n.emailField,
               child: TextFormField(
                 controller: _emailCtrl,
-                decoration: InputDecoration(labelText: l10n.emailField),
+                style: TextStyle(fontSize: _tamanoletra),
+                decoration: InputDecoration(
+                  labelText: l10n.emailField,
+                  labelStyle: TextStyle(fontSize: _tamanoletra),
+                ),
                 keyboardType: TextInputType.emailAddress,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -94,10 +117,45 @@ class _FormularioState extends State<Formulario> {
               label: l10n.sendButton,
               hint: l10n.sendButton,
               child: ElevatedButton(
-                onPressed: _enviar, 
-                child:  Text(l10n.sendButton),
+                onPressed: _enviar,
+                child: Text(
+                  l10n.sendButton,
+                  style: TextStyle(fontSize: _tamanoletra),
+                ),
               ),
             ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 40),
+              child: Slider(
+                value: _tamanoletra,
+                min: 10.0,
+                max: 50.0,
+                divisions: 40,
+                label: _tamanoletra.round().toString(),
+                onChanged: (double nuevo) {
+                  setState(() {
+                    _tamanoletra = nuevo;
+                  });
+                },
+              ),
+            ),
+            ElevatedButton(
+              onPressed: (){
+                widget.onLocaleChange(Locale('en'));
+              },
+              child: Text("Traducir Inglés",
+              style: TextStyle(
+                fontSize: _tamanoletra
+              ),)),
+              ElevatedButton(
+              onPressed: () {
+                widget.onLocaleChange(Locale('es'));
+              }, 
+              child: Text(
+                "Traducir español",
+                style: TextStyle(
+                  fontSize: _tamanoletra
+                ),)),
           ],
         ),
       ),
